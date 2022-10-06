@@ -3,7 +3,7 @@ These are my attempts at the exercises Jacob Hilton suggests in his Deep Learnin
 Some, but not all, of them work with pytorch's new MPS device.
 
 ## WIP
-\#2 Scaling Laws
+\#2 Scaling Laws\n
 \#6 Reinforcement Learning
 
 ## To-Do
