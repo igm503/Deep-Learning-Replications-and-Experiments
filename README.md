@@ -9,10 +9,15 @@ Some, but not all, of them work with pytorch's new MPS device.
 
 ## To-Do
 \#3 Training at Scale
+
 \#4 Optimization
+
 \#5 Modeling Objectives
+
 \#7 Alignment
+
 \#8 Interpretability
+
 \#9 Adversarial Training
 
 ## Done for now
