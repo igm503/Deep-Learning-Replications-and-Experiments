@@ -1,24 +1,24 @@
-# Jacob-Hilton-Deep-Learning-Curriculum
-These are my attempts at the exercises Jacob Hilton suggests in his Deep Learning Curriculum, available at https://github.com/jacobhilton/deep_learning_curriculum
-Some, but not all, of them work with pytorch's new MPS device.
+# Deep Learning Replications
 
-## WIP
-\#2 Scaling Laws 
+These are a mixture of partial replications of landmark papers in deep learning research and small investigative projects inspired by those papers. 
 
-\#6 Reinforcement Learning
+In many cases, the projects follow recommendations Jacob Hilton makes in his Deep Learning Curriculum, which is available athttps://github.com/jacobhilton/deep_learning_curriculum
 
-## To-Do
-\#3 Training at Scale
+All of them currently work with the MPS device in the latest pytorch release.
 
-\#4 Optimization
+## Projects
+### 1 Scaling Laws 
 
-\#5 Modeling Objectives
+This is a test following Kaplan et. al.'s "Scaling Laws for Neural Language Models" and Hoffman et. al.'s "Training Compute-Optimal Large Language Models". Since I don't have access to enough compute to estimate the relation between loss, model size, and data size for language models, I've followed Hilton's recommendation of using a small conv net with the MNIST data set. To allow for more variation among the measured data sizes, I copy and randomly transform the MNIST data set with rotations and distortions several times over. 
 
-\#7 Alignment
+To Do: estimate formulae for optimal model size and data size given fixed compute availability. 
 
-\#8 Interpretability
+### 2 Transformers
 
-\#9 Adversarial Training
+This is a decoder-only implementation of the transformer model introduced in Vaswani et. al.'s "Attention is All You Need." I train the model on sequences of ascending integers, sequences of random integers that repeat in the second half of the sequence (e.g. [1, 5, 2, 4, 0, 1, 5, 2, 4]), Shakespeare, and the King James Bible. Performance on the Shakespeare and KJV modeling tasks is currently pretty low. One part of the project is to tweak the model and hyperparameters to improve the language modeling performance.
 
-## Done for now
-\#1 Transformers
+The second part of this project is investigating the extent to which McCandlish et. al.'s theory and empirical findings in "An Empirical Model of Large-Batch Training" apply to small instances of the transformer architecture. 
+
+### 3 Reinforcement Learning
+
+This is a basic implementation of VPG and PPO (the latter as described in Schulman et. al.'s "Proximal Policy Optimization Algorithms"). I validated the implementations on a few OpenAI Gym environments and am currently working on getting the PPO-trained network to perform in more difficult Procgen environments. 
