@@ -21,4 +21,4 @@ The second part of this project is investigating the extent to which McCandlish 
 
 \#3 Reinforcement Learning
 
-This is a basic implementation of VPG. I validated the implementation on a few OpenAI Gym environments and am currently working on getting the network to perform in more difficult Procgen environments. 
+This is a basic implementation of VPG and PPO (the latter as described in Schulman et. al.'s "Proximal Policy Optimization Algorithms"). I validated the implementations on a few OpenAI Gym environments and am currently working on getting the PPO-trained network to perform in more difficult Procgen environments. 
