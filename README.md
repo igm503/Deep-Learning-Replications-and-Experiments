@@ -2,7 +2,7 @@
 
 These are a mixture of partial replications of landmark papers in deep learning research and small investigative projects inspired by those papers. 
 
-In many cases, the projects follow recommendations Jacob Hilton makes in his Deep Learning Curriculum, which is available athttps://github.com/jacobhilton/deep_learning_curriculum
+In many cases, the projects follow recommendations Jacob Hilton makes in his Deep Learning Curriculum, which is available at https://github.com/jacobhilton/deep_learning_curriculum
 
 All of them currently work with the MPS device in the latest pytorch release.
 
