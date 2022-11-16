@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-class digit_reader(nn.Module):
+class model(nn.Module):
     def __init__(self, model_size):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 6 * model_size, 5)
@@ -47,6 +47,8 @@ def evaluate(testloader, net):
             running_loss += loss.item()
     return running_loss
 
+def train_one_epoch()
+
 if __name__ == '__main__':
     transform = transforms.ToTensor()
     batch_size_list = [64, 256, 512, 1024, 4096]
@@ -70,7 +72,7 @@ if __name__ == '__main__':
         for model_size in model_size_list:
             for data_size in data_size_list:
                 # Make Net and Loss Function
-                net = digit_reader(model_size)
+                net = model(model_size)
                 net = net.to(device)
                 criterion = nn.CrossEntropyLoss()
                 rate = 0.01 / np.sqrt(model_size)
@@ -113,7 +115,7 @@ if __name__ == '__main__':
 
     fig, (ax1, ax2) = plt.subplots(nrows = 2, ncols=1)
     ax1.scatter(compute_list, accuracy_list16)
-    ax1.set_xscale('log')``
+    ax1.set_xscale('log')
     ax2.scatter(compute_list, accuracy_list16, label = 'batchsize: 16')
     ax2.scatter(compute_list, accuracy_list64, label = 'batchsize: 64')
     ax2.scatter(compute_list, accuracy_list256, label = 'batchsize: 256')

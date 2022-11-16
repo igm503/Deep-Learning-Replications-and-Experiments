@@ -7,22 +7,23 @@ from torch.optim.lr_scheduler import LambdaLR
 
 if __name__ == '__main__':
     # Hyperparameters
-    d_model = 256
-    layers = 4
-    attention_heads = 8
+    d_model = 64
+    layers = 1
+    attention_heads = 4
     d_query = d_model // attention_heads
-    batch_size = 32
-    data_length = 15
+    batch_size = 128
+    data_length = 5
     device = 'cpu'
     training_data_size = 1000000
     eval_size = 32
-    vocab_size = 10
+    vocab_size = 5
     smoothing = 0.001
     epochs = 1
 
     # Generate data
 
-    training_data, eval_data, vocab_size, in_dict, out_dict = gen_text_nltk('shakespeare.txt', 100, 100, eval_size)
+    #training_data, eval_data, vocab_size, in_dict, out_dict = gen_text_nltk('shakespeare.txt', 100, 100, eval_size)
+    training_data, eval_data, vocab_size, in_dict, out_dict = gen_text('shakespeare.txt', 10, 10, eval_size)
     #training_data, eval_data = generate_num_data(data_size, eval_size, vocab_size, data_length)
     #training_data, eval_data = gen_repeat(training_data_size, eval_size, vocab_size, data_length)
     
@@ -32,8 +33,8 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam(model.parameters(), lr=.01, betas=(0.9, 0.98), eps=1e-9)
     criterion = nn.KLDivLoss(reduction='batchmean')
     lr_scheduler = LambdaLR(optimizer=optimizer, 
-                            lr_lambda=lambda step: rate(step, d_model, factor=1, warmup=3000))
+                            lr_lambda=lambda step: rate(step, d_model, factor=10, warmup=3000))
 
     # Train
     model.to(device)
-    train(model, optimizer, criterion, lr_scheduler, batch_size, training_data, eval_data, epochs, device, smoothing, vocab_size, out_dict)
+    train(model, optimizer, criterion, lr_scheduler, batch_size, training_data, eval_data, epochs, device, smoothing, vocab_size, rec_batch_noise=10)
