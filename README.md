@@ -6,7 +6,7 @@ In many cases, the projects follow recommendations Jacob Hilton makes in his Dee
 
 All of them currently work with the MPS device in the latest pytorch release.
 
-## WIP
+## Projects
 \#1 Scaling Laws 
 
 This is a test following Kaplan et. al.'s "Scaling Laws for Neural Language Models" and Hoffman et. al.'s "Training Compute-Optimal Large Language Models". Since I don't have access to enough compute to estimate the relation between loss, model size, and data size for language models, I've followed Hilton's recommendation of using a small conv net with the MNIST data set. To allow for more variation among the measured data sizes, I copy and randomly transform the MNIST data set with rotations and distortions several times over. 
