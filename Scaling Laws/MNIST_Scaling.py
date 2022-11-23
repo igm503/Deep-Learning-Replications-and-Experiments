@@ -1,4 +1,5 @@
 from training_utils import run_test
+from model import CNNModel, LinearModel
 import math
 import pandas as pd
 import argparse
@@ -7,26 +8,36 @@ import argparse
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
-                    prog = 'MNIST Scaling Test',
-                    description = 'Runs specificiable number of experiments to see\
+        prog='MNIST Scaling Test',
+        description='Runs specificiable number of experiments to see\
                                  how different model sizes or learning rates affect\
                                  model performance given different amounts of training\
                                  data. log_type can be set to \'s\' to measure the\
                                  effect of changing model size and training length\
                                  or to \'lr\' to measure the effect of changing learning\
                                  rate')
-    parser.add_argument('test_values', metavar='N', type=int, nargs='*')
-    parser.add_argument('--log_type', metavar='string', dest='log_type', default='s')
-    parser.add_argument('--interval', metavar='integer', dest='log_interval', type=int, default=100)
-    parser.add_argument('--trials', metavar='integer', dest='num_tests', type=int, default=1)
-    parser.add_argument('--size', metavar='integer', dest='model_size', type=int, default=1)
-    parser.add_argument('--batch', metavar='integer', dest='batch_size', type=int, default=128)
-    parser.add_argument('--lr', metavar='float', dest='base_rate', type=float, default=0.01)
-    parser.add_argument('--data', metavar='integer', dest='data_augment', type=int, default=1)
+    parser.add_argument('test_values', metavar='N', type=float, nargs='*')
+    parser.add_argument('--log_type', metavar='string',
+                        dest='log_type', default='s')
+    parser.add_argument('--interval', metavar='integer',
+                        dest='log_interval', type=int, default=100)
+    parser.add_argument('--linear', dest='model',
+                        action='store_const', const=LinearModel, default=CNNModel)
+    parser.add_argument('--trials', metavar='integer',
+                        dest='num_tests', type=int, default=1)
+    parser.add_argument('--size', metavar='integer',
+                        dest='model_size', type=int, default=1)
+    parser.add_argument('--batch', metavar='integer',
+                        dest='batch_size', type=int, default=128)
+    parser.add_argument('--lr', metavar='float',
+                        dest='base_rate', type=float, default=0.05)
+    parser.add_argument('--data', metavar='integer',
+                        dest='data_augment', type=int, default=1)
     parser.add_argument('--device', dest='device', type=str, default='cpu')
-    parser.add_argument('--filename', dest='filename', type=str, default='results.csv')
+    parser.add_argument('--filename', dest='filename',
+                        type=str, default='results.csv')
     args = parser.parse_args()
-
+    print(args.model)
     if args.test_values == []:
         if args.log_type == 's':
             args.test_values = [math.sqrt(2) ** i for i in range(9)]
@@ -54,9 +65,10 @@ if __name__ == '__main__':
         print('model size:', args.model_size)
     print()
 
-    df = pd.DataFrame({'model_size': [], 'lr': [], 'step': [],  'train_loss': [], 'eval_loss': []})
+    df = pd.DataFrame({'model_size': [], 'lr': [], 'step': [],
+                      'train_loss': [], 'eval_loss': []})
 
-    run_test(df, args.log_type, args.log_interval, args.test_values, args.num_tests, args.model_size, 
-            args.batch_size, args.base_rate, args.data_augment, args.device)
+    run_test(df, args.log_type, args.log_interval, args.test_values, args.num_tests, args.model, args.model_size,
+             args.batch_size, args.base_rate, args.data_augment, args.device)
 
     df.to_csv(args.filename)
