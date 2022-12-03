@@ -9,9 +9,9 @@ All of them currently work with the MPS device in the latest pytorch release.
 ## Projects
 ### 1 Scaling Laws 
 
-This is a test following Kaplan et. al.'s "Scaling Laws for Neural Language Models" and Hoffman et. al.'s "Training Compute-Optimal Large Language Models". Since I don't have access to enough compute to estimate the relation between loss, model size, and data size for language models, I've followed Hilton's recommendation of using a small conv net with the MNIST data set. To allow for more variation among the measured data sizes, I copy and randomly transform the MNIST data set with rotations and distortions several times over. 
+This is a test following Kaplan et. al.'s "Scaling Laws for Neural Language Models" and Hoffman et. al.'s "Training Compute-Optimal Large Language Models". Since I don't have access to enough compute to estimate the relation between loss, model size, and data size for language models, I've followed Hilton's recommendation of using a small conv net with the MNIST data set. 
 
-To Do: estimate formulae for optimal model size and data size given fixed compute availability. 
+I also test with an MLP model and perform another test for both model types with the EMNIST dataset with elastic distortions to try to approximate a situation in which more than the 60,000 MNIST images are available. In all cases, the models scale much more with size than with data, but the limited amount of unique data makes me suspicious of these results. 
 
 ### 2 Transformers
 
